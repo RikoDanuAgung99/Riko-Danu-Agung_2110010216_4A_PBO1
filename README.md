@@ -39,142 +39,134 @@ public class program {
 }
 ```
 
-2. **Object** adalah instance dari class. Pada kode ini, `mhs[i] = new MahasiswaDetail(nama, npm);` adalah contoh pembuatan object.
+2. **Object** adalah instance dari class. Pada kode ini, `atletArray[i] = new AtletPencakSIlatKota(Nama, usia, kota);
+```` adalah contoh membuat objek AtletPencakSIlatKota menggunakan construktor.
 
 ```bash
-mhs[i] = new MahasiswaDetail(nama, npm);
+atletArray[i] = new AtletPencakSIlatKota(Nama, usia, kota);
 ```
 
-3. **Atribut** adalah variabel yang ada dalam class. Pada kode ini, `nama` dan `npm` adalah contoh atribut.
+3. **Atribute** adalah variabel yang ada dalam class. Pada kode ini, `Nama` , `usia` dan `kota` adalah contoh atribut.
+```bash
+String Nama;
+int usia;
+String kota;
+```
+
+4. **Constructor** adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `AtletPencakSilat` dan `AtletPencakSIlatKota`.
 
 ```bash
-String nama;
-String npm;
+public AtletPencakSilat(String Nama, int usia) {
+        this.Nama = Nama;
+        this.usia = usia;
+}
+
+ public AtletPencakSIlatKota(String Nama, int usia, String kota) {
+        super(Nama, usia);
+        this.kota = kota;
+    }
 ```
 
-4. **Constructor** adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `Mahasiswa` dan `MahasiswaDetail`.
+5. **Mutator** atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setNama` dan `setUsia` adalah contoh method mutator.
 
 ```bash
-public Mahasiswa(String nama, String npm) {
-    this.nama = nama;
-    this.npm = npm;
-}
+public void setNama(String Nama) {
+        this.Nama = Nama;
+    }
 
-public MahasiswaDetail(String nama, String npm) {
-    super(nama, npm);
-}
+    public void setUsia(int usia) {
+        this.usia = usia;
+    }
 ```
 
-5. **Mutator** atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setNama` dan `setNpm` adalah contoh method mutator.
-
-```bash
-public void setNama(String nama) {
-    this.nama = nama;
-}
-
-public void setNpm(String npm) {
-    this.npm = npm;
-}
-```
-
-6. **Accessor** atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `getNama`, `getNpm`, `getTahunMasuk`, `getFakultas`, `getProdi`, dan `getNoRegistrasi` adalah contoh method accessor.
+6. **Accessor** atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `getNama`, `getUsia`, `getKota` adalah contoh method accessor.
 
 ```bash
 public String getNama() {
-    return nama;
-}
+        return Nama;
+    }
 
-public String getNpm() {
-    return npm;
-}
+    public int getUsia() {
+        return usia;
+    }
+
+public String getKota(){
+        return kota;
+    }
 ```
 
-7. **Encapsulation** adalah konsep menyembunyikan data dengan membuat atribut menjadi private dan hanya bisa diakses melalui method. Pada kode ini, atribut `nama` dan `npm` dienkapsulasi dan hanya bisa diakses melalui method getter dan setter.
+7. **Encapsulation** adalah konsep menyembunyikan data dengan membuat atribut menjadi private dan hanya bisa diakses melalui method. Pada kode ini saya tidak memakai nya.
 
 ```bash
-private String nama;
-private String npm;
 ```
 
-8. **Inheritance** adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `MahasiswaDetail` mewarisi `Mahasiswa` dengan sintaks `extends`.
+8. **Inheritance** adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `AtletPencakSilat` mewarisi `AtletPencakSIlatKota` dengan sintaks `extends`.
 
 ```bash
-public class MahasiswaDetail extends Mahasiswa {
+public class AtletPencakSIlatKota extends AtletPencakSilat {
     ...
 }
 ```
 
-9. **Polymorphism** adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Ini memungkinkan metode-metode dengan nama yang sama untuk berperilaku berbeda tergantung pada tipe objek yang mereka manipulasi, polymorphism bisa berbentuk Overloading ataupun Overriding. Pada kode ini, method `displayInfo(String)` di `Mahasiswa` merupakan overloading method `displayInfo` dan `displayInfo` di `MahasiswaDetail` merupakan override dari method `displayInfo` di `Mahasiswa`.
+9. **Polymorphism** adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Ini memungkinkan metode-metode dengan nama yang sama untuk berperilaku berbeda tergantung pada tipe objek yang mereka manipulasi, polymorphism bisa berbentuk Overloading ataupun Overriding.
 
 ```bash
-public String displayInfo(String kelas) {
-    return displayInfo() + "\nKelas: " + kelas;
-}
+ public void displayInfo() {
+        System.out.println("Nama: "+Nama);
+        System.out.println("Usia: "+usia);
+    }
 
-@Override
-public String displayInfo() {
-    ...
-}
+ @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Kota: "+kota);
+    }
 ```
 
-10. **Seleksi** adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi `if else` dalam method `getFakultas` dan seleksi `switch` dalam method `getProdi`.
+10. **Seleksi** adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi `if else`.
 
 ```bash
-public String getFakultas() {
-    if(getNpm().substring(2, 4).equals("10")){
-        return "Teknologi Informasi";
-    } else {
-        return "Fakultas lain";
-    }
-
-    //return getNpm().substring(2, 4).equals("10") ? "Teknologi Informasi" : "Fakultas lain";
-}
-
-public String getProdi() {
-    switch(getNpm().substring(4, 6)) {
-        case "01":
-            return "Teknik Informatika";
-        case "02":
-            return "Sistem Informasi";
-        default:
-            return "Prodi lain";
-    }
-}
+if (atlet.getUsia() >= 20){
+            System.out.println("Kategori: Senior");
+        }else{
+            System.out.println("Kategori: Junior");
+        }
+        System.out.println();
+        }
 ```
 
 11. **Perulangan** adalah statement kontrol yang digunakan untuk menjalankan blok kode berulang kali. Pada kode ini, digunakan loop `for` untuk meminta input dan menampilkan data.
 
 ```bash
-for (int i = 0; i < mahasiswas.length; i++) {
-    ...
-}
+for (int i= 0; i < atletArray.length; i++){
+            System.out.println("\nData Atlet " + (i + 1));
+            System.out.println("Nama: ");
+            String Nama = input.nextLine();
+
+for (AtletPencakSIlatKota atlet : atletArray)
+     atlet.displayInfo();
 ```
 
-12. **Input Output Sederhana** digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class `Scanner` untuk menerima input dan method `System.out.println` untuk menampilkan output.
+12. **Input Output Sederhana** digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class `Scanner` untuk meminta input data atlet (nama, usia, dan kota) 
 
 ```bash
-Scanner scanner = new Scanner(System.in);
-System.out.print("Masukkan Nama Mahasiswa ke-" + (i + 1) + ": ");
-String nama = scanner.nextLine();
-
-System.out.println("\nData Mahasiswa:");
-System.out.println(mahasiswa.displayInfo());
+Scanner input = new Scanner(System.in);
 ```
 
-13. **Array** adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. Pada kode ini, `MahasiswaDetail[] mahasiswas = new MahasiswaDetail[2];` adalah contoh penggunaan array.
+13. **Array** adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. Pada kode ini, `AtletPencakSIlatKota[] atletArray = new AtletPencakSIlatKota[2];` adalah contoh penggunaan array.
 
 ```bash
-MahasiswaDetail[] mahasiswas = new MahasiswaDetail[2];
+AtletPencakSIlatKota[] atletArray = new AtletPencakSIlatKota[2];
 ```
 
 14. **Error Handling** digunakan untuk menangani error yang mungkin terjadi saat runtime. Pada kode ini, digunakan `try catch` untuk menangani error.
 
 ```bash
-try {
-    // code that might throw an exception
-} catch (Exception e) {
-    System.out.println("Error: " + e.getMessage());
-}
+while(Nama.trim().isEmpty()){
+             System.out.println("Nama tidak boleh kosong. SIlahkan masukkan nama atlet.");
+             System.out.println("nama: ");
+             Nama = input.nextLine();
+         }
 ```
 
 ## Usulan nilai
@@ -187,7 +179,7 @@ try {
 |  4  | Constructor    |    5    |
 |  5  | Mutator        |    5    |
 |  6  | Accessor       |    5    |
-|  7  | Encapsulation  |    5    |
+|  7  | Encapsulation  |    0    |
 |  8  | Inheritance    |    5    |
 |  9  | Polymorphism   |   10    |
 | 10  | Seleksi        |    5    |
@@ -195,9 +187,9 @@ try {
 | 12  | IO Sederhana   |   10    |
 | 13  | Array          |   15    |
 | 14  | Error Handling |   15    |
-|     | **TOTAL**      | **100** |
+|     | **TOTAL**      | **95** |
 
 ## Pembuat
 
-Nama: Muhammad Edya Rosadi
-NPM: 2110010001
+Nama: Riko Danu Agung
+NPM: 2110010216
